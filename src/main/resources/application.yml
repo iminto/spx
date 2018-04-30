@@ -1,0 +1,25 @@
+#查看spring boot开启了哪些配置
+debug: false
+
+undertow:
+    accesslog:
+      enabled: false
+    io-threads: 4 #设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接,默认取CPU核心数量
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spxApp
+---
+spring:
+    profiles: dev
+server:
+  port: 8080
+
+---
+spring:
+    profiles: prod
+server:
+  port: 9696
