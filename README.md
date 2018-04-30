@@ -1,3 +1,6 @@
+[![build](https://www.travis-ci.org/iminto/spx.svg?branch=master)](https://www.travis-ci.org/iminto/spx)
+
+
 #### 启动
 ```shell
 docker run -p 8080:8080 -t springboot/spx
