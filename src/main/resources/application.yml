@@ -6,12 +6,26 @@ undertow:
       enabled: false
     io-threads: 4 #设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接,默认取CPU核心数量
 
+beetl-beetlsql:
+  dev: false
+
+beetlsql:
+  basePackage: spx
 
 spring:
   profiles:
     active: dev
   application:
     name: spxApp
+  datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      user: root
+      password: 123
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      hikari:
+            maxLifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
+            maximumPoolSize: 15 #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
 ---
 spring:
     profiles: dev
