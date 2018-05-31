@@ -1,6 +1,12 @@
 #查看spring boot开启了哪些配置
 debug: false
 
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+
 undertow:
     accesslog:
       enabled: false
@@ -8,6 +14,9 @@ undertow:
 
 beetl-beetlsql:
   dev: false
+
+beetl:
+  suffix: html
 
 beetlsql:
   basePackage: spx

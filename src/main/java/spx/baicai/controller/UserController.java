@@ -19,13 +19,13 @@ public class UserController {
 
     static Map<Integer, User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
 
-    @RequestMapping(value={""}, method= RequestMethod.GET)
+    @RequestMapping(value={"/list"}, method= RequestMethod.GET)
     public List<User> getUserList() {
         List<User> r = new ArrayList<User>(users.values());
         return r;
     }
 
-   @RequestMapping(value="", method=RequestMethod.POST)
+   @RequestMapping(value="/add", method=RequestMethod.POST)
     public String postUser(@RequestBody User user) {
         users.put(user.getId(), user);
         return "success";
