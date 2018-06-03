@@ -16,3 +16,4 @@ Guardfile
 README.html
 *.iml
 .idea
+*.class

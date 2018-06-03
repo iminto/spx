@@ -1,4 +1,4 @@
-package spx.baicai.service;
+package spx.baicai.dao;
 import org.beetl.sql.core.annotatoin.Param;
 import org.beetl.sql.core.annotatoin.SqlResource;
 import org.beetl.sql.core.mapper.BaseMapper;

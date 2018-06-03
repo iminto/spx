@@ -4,8 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import spx.baicai.model.User;
 import spx.baicai.service.UserService;
+import spx.baicai.model.User;
+
 import java.util.*;
 
 @RestController
