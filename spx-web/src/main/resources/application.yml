@@ -17,6 +17,10 @@ beetl-beetlsql:
 
 beetl:
   suffix: html
+  delimiter-statement-start: '<!--:'
+  delimiter-statement-end: '--\>'
+  resource-tagsuffix: tag
+  resource-auto-check: false #是否检测文件变化,开发用true合适，但线上要改为false
 
 beetlsql:
   basePackage: spx

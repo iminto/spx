@@ -24,7 +24,7 @@ public class BizExceptionHandle implements ErrorController {
     public String error404(HttpServletRequest request, HttpServletResponse resp) {
         logger.info("error404");
         request.setAttribute("errorMsg",404);
-        return "error/4xx.html";
+        return "error/4xx";
 
     }
 
@@ -37,7 +37,7 @@ public class BizExceptionHandle implements ErrorController {
                 "X-Requested-With").indexOf("XMLHttpRequest") > -1))) {
             // 如果不是ajax，返回页面
             request.setAttribute("errorMsg", "系统异常！");
-            return "error/5xx.html";
+            return "error/5xx";
         }else{
             // 如果是ajax请求，JSON格式返回
             try {
