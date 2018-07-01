@@ -29,6 +29,11 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.code = code;
     }
 
+    @Override
+    public Throwable fillInStackTrace() {
+        return this;
+    }
+
     public String getMsg() {
         return msg;
     }
