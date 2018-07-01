@@ -10,5 +10,6 @@ import spx.baicai.model.User;
 public interface UserDao extends BaseMapper<User> {
 
     int getCountWithName(@Param("name") String name);
+
     User getFirstUser();
 }

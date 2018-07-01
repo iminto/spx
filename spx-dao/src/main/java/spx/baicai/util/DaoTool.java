@@ -20,7 +20,7 @@ public class DaoTool {
         UnderlinedNameConversion nc = new UnderlinedNameConversion();
         // 最后，创建一个SQLManager,DebugInterceptor 不是必须的，但可以通过它查看sql执行情况
         SQLManager sqlManager = new SQLManager(mysql, loader, source, nc, new Interceptor[]{new DebugInterceptor()});
-        sqlManager.genPojoCodeToConsole("user");
-        sqlManager.genSQLTemplateToConsole("user");
+        sqlManager.genPojoCodeToConsole("user_info");
+        sqlManager.genSQLTemplateToConsole("user_info");
     }
 }

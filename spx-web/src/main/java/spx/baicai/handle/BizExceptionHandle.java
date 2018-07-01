@@ -32,9 +32,8 @@ public class BizExceptionHandle implements ErrorController {
     public String error(HttpServletRequest request, HttpServletResponse response) {
         logger.info("error");
         Map<String, Object> map = new HashMap<String, Object>();
-        if (!(request.getHeader("accept").indexOf("application/json") > -1 || (request
-                .getHeader("X-Requested-With") != null && request.getHeader(
-                "X-Requested-With").indexOf("XMLHttpRequest") > -1))) {
+        if (request.getHeader("accept").indexOf("application/json") <=-1 && request
+                .getHeader("X-Requested-With") == null ) {
             // 如果不是ajax，返回页面
             request.setAttribute("errorMsg", "系统异常！");
             return "error/5xx";
@@ -50,7 +49,6 @@ public class BizExceptionHandle implements ErrorController {
                 writer.flush();
                 writer.close();
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
         return null;

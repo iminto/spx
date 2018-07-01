@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import spx.baicai.service.UserService;
 import spx.baicai.model.User;
 
-import java.util.*;
-
 @RestController
 @RequestMapping(value="/users")
 public class UserController {
@@ -18,27 +16,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    static Map<Integer, User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
 
-    @RequestMapping(value={"/list"}, method= RequestMethod.GET)
-    public List<User> getUserList() {
-        List<User> r = new ArrayList<User>(users.values());
-        return r;
-    }
-
-   @RequestMapping(value="/add", method=RequestMethod.POST)
-    public String postUser(@RequestBody User user) {
-        users.put(user.getId(), user);
-        return "success";
-    }
-
-
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/{id}", method= RequestMethod.GET)
     public User getUser(@PathVariable Integer id) {
         User user=userService.getUser(id);
-        int count=userService.getCount("baide");
-        log.info("userService.getCount(\"baide\")="+count);
         return user;
+    }
+
+    @RequestMapping(value="/add",method = RequestMethod.POST)
+    public int addUser(@RequestBody User user) {
+        return userService.insertUser(user);
     }
 
 

@@ -21,4 +21,10 @@ public class UserService {
     public User getFirstUser(){
         return userDao.getFirstUser();
     }
+
+    public int insertUser(User user){
+        userDao.insert(user,true);
+        return user.getId();
+    }
+
 }
