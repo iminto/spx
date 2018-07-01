@@ -1,0 +1,14 @@
+{
+	"cmsName": "Spx后台管理",
+	"version": "v2.0",
+	"author": "白的菜",
+	"homePage": "index.html",
+	"server": "windows",
+	"dataBase": "8.00.2039",
+	"maxUpload": "2M",
+	"userRights": "超级管理员",
+	"description": "测试开发者",
+	"powerby": "copyright @2018 ",
+	"record": "京ICP备14040xxx号-1",
+	"keywords": "spxAdmin"
+}

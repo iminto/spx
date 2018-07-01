@@ -1,0 +1,54 @@
+#查看spring boot开启了哪些配置
+debug: false
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+
+undertow:
+    accesslog:
+      enabled: false
+    io-threads: 4 #设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接,默认取CPU核心数量
+
+beetl-beetlsql:
+  dev: false
+
+beetl:
+  suffix: html
+  delimiter-statement-start: '<!--:'
+  delimiter-statement-end: '--\>'
+  resource-tagsuffix: tag
+  resource-auto-check: false #是否检测文件变化,开发用true合适，但线上要改为false
+
+beetlsql:
+  basePackage: spx
+
+spring:
+  profiles:
+    active: dev
+  resources:
+    static-locations: classpath:/templates
+  application:
+    name: spxAdmin
+  datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      user: root
+      password: 123
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      hikari:
+            maxLifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
+            maximumPoolSize: 15 #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+---
+spring:
+    profiles: dev
+server:
+  port: 8080
+
+---
+spring:
+    profiles: prod
+server:
+  port: 9696
