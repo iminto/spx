@@ -19,6 +19,12 @@
             <groupId>baicai</groupId>
             <artifactId>spx-dao</artifactId>
             <version>0.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
