@@ -12,10 +12,11 @@ public class ErrorConfigure implements ErrorPageRegistrar {
 
     @Override
     public void registerErrorPages(ErrorPageRegistry registry) {
-        ErrorPage[] errorPages=new ErrorPage[3];
+        ErrorPage[] errorPages=new ErrorPage[4];
         errorPages[0]=new ErrorPage(HttpStatus.NOT_FOUND, "/error/4xx");
         errorPages[1]=new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error");
         errorPages[2]=new ErrorPage(BusinessException.class, "/error");
+        errorPages[3]=new ErrorPage(Exception.class, "/error");
         registry.addErrorPages(errorPages);
     }
 }

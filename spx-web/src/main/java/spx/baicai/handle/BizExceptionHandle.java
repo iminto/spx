@@ -35,7 +35,7 @@ public class BizExceptionHandle implements ErrorController {
         if(throwable.getCause() instanceof BusinessException){
             business=true;
         }
-        if (request.getHeader("content-type").indexOf("application/json") <=-1 && request
+        if ((request.getHeader("content-type")==null||request.getHeader("content-type").indexOf("application/json") <=-1 )&& request
                 .getHeader("X-Requested-With") == null ) {
             if(business) {
                 request.setAttribute("errorMsg", "系统异常！");
