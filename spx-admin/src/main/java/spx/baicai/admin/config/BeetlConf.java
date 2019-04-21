@@ -13,8 +13,8 @@ import java.util.Properties;
 @Configuration
 public class BeetlConf {
 
-    @Value("${beetl.templatesPath:templates}")
-    String templatesPath;// 模板跟目录
+    @Value("${beetl.templatesPath:static}")
+    String templatesPath;// 模板根目录
 
     @Bean(name = "beetlConfig")
     public BeetlGroupUtilConfiguration getBeetlGroupUtilConfiguration() {
