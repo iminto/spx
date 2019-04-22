@@ -35,6 +35,7 @@
         <module>spx-service</module>
         <module>spx-web</module>
         <module>spx-admin</module>
+        <module>spx-api</module>
     </modules>
 
     <dependencies>

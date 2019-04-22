@@ -1,6 +1,8 @@
 package spx.baicai;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
@@ -22,6 +24,7 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -38,6 +41,9 @@ import javax.sql.DataSource;
 })
 @SpringBootApplication
 @ComponentScan(basePackages = {"spx.baicai"})
+@EnableDubboConfig
+@DubboComponentScan("spx.baicai.service.facade")
+@EnableTransactionManagement
 public class App implements EnvironmentAware {
     protected Logger log = LoggerFactory.getLogger(this.getClass());
 
