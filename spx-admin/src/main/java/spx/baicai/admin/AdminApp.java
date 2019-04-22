@@ -1,8 +1,6 @@
 package spx.baicai.admin;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
@@ -39,8 +37,6 @@ import javax.sql.DataSource;
 })
 @SpringBootApplication
 @ComponentScan(basePackages = {"spx.baicai"})
-@EnableDubboConfig
-@DubboComponentScan("spx.baicai.admin.service")
 public class AdminApp implements EnvironmentAware {
     protected Logger log = LoggerFactory.getLogger(this.getClass());
 
