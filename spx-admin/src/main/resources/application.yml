@@ -80,6 +80,7 @@ logging:
 dubbo:
   application:
     name: dubbo-spx
+    qosEnable: false
   # 应用所属者
   owner: baicai
   # 应用所属组织
@@ -101,7 +102,7 @@ dubbo:
     # 协议端口
     port: 20880
     # 协议访问log
-    accesslog: dubbo-access.log
+    accesslog: /tmp/dubbo-access-consumer.log
   # 重试次数
   provider:
     retries: 0

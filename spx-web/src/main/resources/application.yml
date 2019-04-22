@@ -79,6 +79,7 @@ logging:
 dubbo:
   application:
     name: dubbo-spx
+    qosEnable: false
   # 应用所属者
   owner: baicai
   # 应用所属组织
