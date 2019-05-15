@@ -109,8 +109,8 @@ dubbo:
     # 超时时间
     timeout: 3000
   # 注册监控中心
-  monitor:
-    protocol: registry
+  #monitor:
+    #protocol: registry
 ---
 spring:
   profiles: dev
