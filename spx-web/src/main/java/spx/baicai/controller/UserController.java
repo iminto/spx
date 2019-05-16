@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @RequestMapping(value="/add",method = RequestMethod.POST)
-    public int addUser(@RequestBody User user) {
+    public int addUser(@RequestBody User user){
         return userService.insertUser(user);
     }
 
