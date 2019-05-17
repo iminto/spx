@@ -1,5 +1,7 @@
 package spx.baicai;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
@@ -44,8 +46,9 @@ import javax.sql.DataSource;
 @EnableDubboConfig
 @DubboComponentScan("spx.baicai.service.facade")
 @EnableTransactionManagement
+@NacosPropertySource(dataId = "spx-pro", groupId = "DEFAULT_GROUP",autoRefreshed = true)
 public class App implements EnvironmentAware {
-    protected Logger log = LoggerFactory.getLogger(this.getClass());
+    protected static Logger log = LoggerFactory.getLogger(App.class);
 
     private Environment env;
     @Override
@@ -56,13 +59,12 @@ public class App implements EnvironmentAware {
     @Bean(name="dataSource")
     public DataSource datasource() {
         HikariDataSource ds = new HikariDataSource();
-        ds.setJdbcUrl(env.getProperty("spring.datasource.url"));
-        ds.setUsername(env.getProperty("spring.datasource.user"));
-        ds.setPassword(env.getProperty("spring.datasource.password"));
-        ds.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
+        ds.setJdbcUrl(jdbcUrl);
+        ds.setUsername(jdbcUserName);
+        ds.setPassword(jdbcPassword);
+        ds.setDriverClassName(driverClassName);
         return ds;
     }
-
 
     public static void main( String[] args )
     {
@@ -78,4 +80,13 @@ public class App implements EnvironmentAware {
 //            String[] beanNames = ctx.getBeanDefinitionNames();
         };
     }
+
+    @NacosValue(value = "${spring.datasource.url}", autoRefreshed = true)
+    private String jdbcUrl;
+    @NacosValue(value = "${spring.datasource.user}", autoRefreshed = true)
+    private String jdbcUserName;
+    @NacosValue(value = "${spring.datasource.password}", autoRefreshed = true)
+    private String jdbcPassword;
+    @NacosValue(value = "${spring.datasource.driver-class-name}", autoRefreshed = true)
+    private String driverClassName;
 }
