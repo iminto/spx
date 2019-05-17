@@ -10,7 +10,7 @@ server:
     context-path: /
   error:
     whitelabel:
-      enabled: false
+      enabled: true
   undertow:
     worker-threads: 8
     io-threads: 4 #设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接,默认取CPU核心数量
