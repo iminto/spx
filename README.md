@@ -15,7 +15,7 @@ docker run -p 8080:8080 /tmp/springx:/tmp -t springboot/spx-web:0.1
 # 由于依赖了mysql ,没在一个网络里，所以运行会报错，这里自己百度解决
 ```
 
-###Nacos分支运行
+### Nacos分支运行
 ``` shell
 #启动nacos（自行安装）
 cd /soft/nacos/bin/ && sh startup.sh -m standalone
