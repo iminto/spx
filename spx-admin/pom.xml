@@ -48,7 +48,7 @@
 
         <dependency>
             <groupId>baicai</groupId>
-            <artifactId>spx.api</artifactId>
+            <artifactId>spx-api</artifactId>
             <version>0.1</version>
         </dependency>
 
