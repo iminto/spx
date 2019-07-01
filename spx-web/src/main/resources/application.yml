@@ -70,8 +70,8 @@ spring:
     bootstrap-servers: 127.0.0.1:9092
     producer:
       retries: 0
-      # 每次批量发送消息的数量
-      batch-size: 1000
+      acks: 1
+      batch-size: 16384
       # 缓存容量
       buffer-memory: 3355443
       # 指定消息key和消息体的编解码方式
