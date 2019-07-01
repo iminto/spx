@@ -65,6 +65,30 @@ spring:
       restart:
           # 热部署开关
         enabled: true
+  kafka:
+    # 指定kafka 代理地址，可以多个
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 0
+      # 每次批量发送消息的数量
+      batch-size: 1000
+      # 缓存容量
+      buffer-memory: 3355443
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      # 指定默认消费者group id
+      group-id: consumer-tutorial
+      auto-commit-interval: 100
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      # 指定消息key和消息体的编解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    # 指定listener 容器中的线程数，用于提高并发量
+    listener:
+      concurrency: 3
 
 # 日志配置
 logging:
@@ -110,6 +134,8 @@ dubbo:
   # 注册监控中心
   #monitor:
     #protocol: registry
+
+
 
 ---
 spring:
