@@ -3,9 +3,11 @@ package spx.baicai.common;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 
 public class JsonUtils {
@@ -24,6 +26,7 @@ public class JsonUtils {
     }
 
     public static String encode(Object obj) {
+        if(obj==null) return null;
         try {
             return objectMapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
@@ -32,12 +35,26 @@ public class JsonUtils {
         return null;
     }
 
-    public static <T> T decode(String json, Class<T> valueType) {
+    public static <T> T decode(String jsonString, Class<T> valueType) {
+        if (jsonString == null || "".equals(jsonString)) {
+            return null;
+        }
         try {
-            return objectMapper.readValue(json, valueType);
-        } catch (JsonParseException e) {
-            logger.error("decode(Object)", e);
-        } catch (IOException e2) {
+            return objectMapper.readValue(jsonString, valueType);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> T readValue(String jsonString, TypeReference<T> valueTypeRef){
+        if (jsonString == null || "".equals(jsonString)) {
+            return null;
+        }
+        try {
+            return objectMapper.readValue(jsonString, valueTypeRef);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

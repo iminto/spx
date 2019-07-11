@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<input id="text" type="text" />
+<button onclick="send()">Send</button>
+<button onclick="closeWebSocket()">Close</button>
+<div id="message">
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    function showDeskTopNotice(title,msg){
+                var Notification = window.Notification || window.mozNotification || window.webkitNotification;
+                if(Notification){
+                    Notification.requestPermission(function(status){
+                        //status默认值'default'等同于拒绝 'denied' 意味着用户不想要通知 'granted' 意味着用户同意启用通知
+                        if("granted" != status){
+                            return;
+                        }else{
+                            var tag = "sds"+Math.random();
+                            var notify = new Notification(
+                                title,
+                                {
+                                    dir:'auto',
+                                    lang:'zh-CN',
+                                    tag:tag,//实例化的notification的id
+                                    //icon:'http://www.yinshuajun.com/static/img/favicon.ico',//通知的缩略图,//icon 支持ico、png、jpg、jpeg格式
+                                    body:msg //通知的具体内容
+                                }
+                            );
+                            notify.onclick=function(){
+                                //如果通知消息被点击,通知窗口将被激活
+                                window.focus();
+                            },
+                            notify.onerror = function () {
+                                console.log("HTML5桌面消息出错！！！");
+                            };
+                            notify.onshow = function () {
+                                setTimeout(function(){
+                                    notify.close();
+                                },2000)
+                            };
+                            notify.onclose = function () {
+                                console.log("HTML5桌面消息关闭！！！");
+                            };
+                        }
+                    });
+                }else{
+                    console.log("您的浏览器不支持桌面消息");
+                }
+            };
+</script>
+<script>
+
+            var userID="999";
+            var websocket=null;
+
+            $(function(){
+                connectWebSocket();
+            })
+
+            //建立WebSocket连接
+            function connectWebSocket(){
+
+                console.log("开始...");
+
+              //建立webSocket连接
+               websocket = new WebSocket("ws://192.168.0.103:8090/myHandler/ID="+userID);
+
+              //打开webSokcet连接时，回调该函数
+               websocket.onopen = function () {
+                    console.log("onpen");
+               }
+
+               //关闭webSocket连接时，回调该函数
+               websocket.onclose = function () {
+               //关闭连接
+                    console.log("onclose");
+               }
+
+               //接收信息
+               websocket.onmessage = function (msg) {
+                    showDeskTopNotice("通知来了",msg.data);
+                    console.log(msg.data);
+               }
+
+            }
+            //发送消息
+            function send(){
+                var postValue={};
+                postValue.id=userID;
+                postValue.message=$("#text").val();
+                websocket.send(JSON.stringify(postValue));
+            }
+            //关闭连接
+            function closeWebSocket(){
+                if(websocket != null) {
+                    websocket.close();
+                }
+            }
+
+
+        </script>
+</body>
+</html>

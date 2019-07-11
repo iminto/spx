@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfigurati
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
+import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import org.springframework.boot.autoconfigure.ldap.LdapAutoConfiguration;
 import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapAutoConfiguration;
 import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
@@ -24,6 +25,8 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
 import javax.sql.DataSource;
 
 @EnableAutoConfiguration(exclude={
@@ -35,12 +38,14 @@ import javax.sql.DataSource;
         LdapAutoConfiguration.class,
         RabbitAutoConfiguration.class,
         SolrAutoConfiguration.class,
-        DataSourceAutoConfiguration.class
+        DataSourceAutoConfiguration.class,
+        KafkaAutoConfiguration.class
 })
 @SpringBootApplication
 @ComponentScan(basePackages = {"spx.baicai"})
 @EnableDubboConfig
 @DubboComponentScan("spx.baicai.admin.service")
+@EnableScheduling
 public class AdminApp implements EnvironmentAware {
     protected Logger log = LoggerFactory.getLogger(this.getClass());
 
