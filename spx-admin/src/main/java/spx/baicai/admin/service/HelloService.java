@@ -6,7 +6,7 @@ import spx.baicai.api.Hello;
 
 @Service
 public class HelloService {
-    @Reference
+    @Reference(retries = 2,check = false)
     private Hello hello;
 
     public String sayHello(String name) {
