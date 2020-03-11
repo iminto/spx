@@ -6,6 +6,6 @@ import spx.baicai.api.Hello;
 public class HelloServiceImpl implements Hello {
     @Override
     public String sayHello(String name) {
-        return "hello ~(from Spring Boot with dubbo-2.7.1) "+name;
+        return "hello ~(from Spring Boot with dubbo-2.7.5) "+name;
     }
 }

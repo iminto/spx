@@ -3,7 +3,7 @@
 
 #### 说明
 本项目是基于springboot2+beetl+dubbo的脚手架,nacos分支使用了nacos做服务发现和配置管理
-先导入spx-web项目下面的SQL脚本，默认使用了MySQL 8.0数据库，然后启动zookeeper即可
+先导入spx-web项目下面的SQL脚本，默认使用了MySQL 8.0数据库，然后启动zookeeper和kafka即可
 spx-admin项目演示了消费者使用dubbo的场景
 
 ### docker运行

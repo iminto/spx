@@ -2,8 +2,10 @@ package spx.baicai.common;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +18,6 @@ public class JsonUtils {
         objectMapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
         objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
     }
 
     private JsonUtils() {
@@ -36,8 +37,9 @@ public class JsonUtils {
         if (jsonString == null || "".equals(jsonString)) {
             return null;
         }
+        ObjectReader r = objectMapper.readerFor(valueType).with(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS);
         try {
-            return objectMapper.readValue(jsonString, valueType);
+            return r.readValue(jsonString);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
