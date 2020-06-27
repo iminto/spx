@@ -34,6 +34,11 @@ public class UserController {
         return userService.getFirstUser();
     }
 
+    @RequestMapping(value="/getCount")
+    public int getCount(String name){
+        return userService.getCount(name);
+    }
+
 
 }
 
